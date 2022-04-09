@@ -6,9 +6,9 @@ import {
     LocalFilesystemConfig,
     RedisCache,
     CacheQueue,
-    BusConnectorConfig, QueueConfig, SyncQueue
+    BusConnectorConfig,
+    QueueConfig,
 } from "@extollo/lib"
-import {LogRequest} from "../http/middlewares/LogRequest.middleware";
 
 export default {
     debug: env('DEBUG_MODE', false),
@@ -60,7 +60,7 @@ export default {
 
     middleware: {
         global: {
-            pre: [LogRequest],
+            pre: [],
         },
     },
 }

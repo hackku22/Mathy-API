@@ -14,7 +14,7 @@ export class Home extends Controller {
 
         const valid = new Promise<UserLogin>(() => {})
 
-        return view('@extollo:welcome', {
+        return view('welcome', {
             app_visits: this.session.get('app_visits'),
             locale: this.locale.helper(),
         })
