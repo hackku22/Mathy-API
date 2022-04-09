@@ -1,4 +1,4 @@
-#!/bin/bash -e
+#!/bin/bash
 
 ENV_NODE="$(which node)"
 ENV_PNPM="$(which pnpm)"
@@ -125,6 +125,8 @@ if [ ! -d "./node_modules" ]; then
 
   echoRun "$ENV_PNPM" i
 
+  echoRun ./node_modules/.bin/ts-patch i
+
   if [ ! -f "./.env" ]; then
     echoRun cp example.env .env
   fi
@@ -134,7 +136,14 @@ if [ ! -d "./node_modules" ]; then
   printf "\033[32m✓\033[39m Looks like you're all set up! Run this command again to access the Extollo CLI.\n"
 else
   start_spinner "Building your app..."
-  "$ENV_PNPM" run build > /dev/null
-  stop_spinner 0
+  BUILD_OUTPUT="$($ENV_PNPM run build  2>&1)"
+  BUILD_EC=$?
+  stop_spinner $BUILD_EC
+  if [ $BUILD_EC -ne 0 ]; then
+    printf "\033[31m✘\033[39m Uh, oh! Looks like your application failed to build. (exit: $BUILD_EC)"
+    echo "$BUILD_OUTPUT"
+    exit $BUILD_EC
+  fi
   "$ENV_NODE" --experimental-repl-await ./lib/cli.js $@
 fi
+

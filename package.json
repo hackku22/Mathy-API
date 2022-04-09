@@ -8,7 +8,7 @@
     "lib": "lib"
   },
   "dependencies": {
-    "@extollo/lib": "^0.9.0",
+    "@extollo/lib": "^0.9.32",
     "copyfiles": "^2.4.1",
     "rimraf": "^3.0.2",
     "ts-expose-internals": "^4.5.4",
