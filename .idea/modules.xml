@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="ProjectModuleManager">
+    <modules>
+      <module fileurl="file://$PROJECT_DIR$/../di/.idea/di.iml" filepath="$PROJECT_DIR$/../di/.idea/di.iml" />
+      <module fileurl="file://$PROJECT_DIR$/.idea/extollo.iml" filepath="$PROJECT_DIR$/.idea/extollo.iml" />
+      <module fileurl="file://$PROJECT_DIR$/../extollo_lib/.idea/lib.iml" filepath="$PROJECT_DIR$/../extollo_lib/.idea/lib.iml" />
+    </modules>
+  </component>
+</project>

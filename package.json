@@ -1,0 +1,51 @@
+{
+  "name": "@extollo/extollo",
+  "version": "0.1.0",
+  "description": "The framework lifts up your code.",
+  "main": "lib/index.js",
+  "types": "lib/index.d.ts",
+  "directories": {
+    "lib": "lib"
+  },
+  "dependencies": {
+    "@extollo/lib": "^0.9.0",
+    "copyfiles": "^2.4.1",
+    "rimraf": "^3.0.2",
+    "ts-expose-internals": "^4.5.4",
+    "ts-patch": "^2.0.1",
+    "ts-to-zod": "^1.8.0",
+    "typescript": "^4.3.2",
+    "zod": "^3.11.6"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "build": "excc -c package.json -t tsconfig.json",
+    "app": "pnpm run build && node lib/index.js",
+    "cli": "pnpm run build && node lib/cli.js"
+  },
+  "files": [
+    "lib/**/*"
+  ],
+  "prepare": "npm run build",
+  "postversion": "git push && git push --tags",
+  "repository": {
+    "type": "git",
+    "url": "https://code.garrettmills.dev/extollo/extollo"
+  },
+  "author": "garrettmills <shout@garrettmills.dev>",
+  "license": "MIT",
+  "extollo": {
+    "cc": {
+      "zodify": [
+        "src/app/types"
+      ],
+      "non-source": [
+        ".env",
+        "src/app/resources"
+      ]
+    }
+  },
+  "devDependencies": {
+    "@extollo/cc": "^0.6.0"
+  }
+}
