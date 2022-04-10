@@ -13,14 +13,18 @@ Route.group('/', () => {
             }))
 
         Route.group('/login', () => {
+            Route.post('/')
+                .calls<Login>(Login, login => login.login)
+
             Route.get('/status')
                 .calls<Login>(Login, login => login.status)
 
             Route.get('/user')
                 .calls<Login>(Login, login => login.user)
-
-            Route.post('/user')
-                .calls<Login>(Login, login => login.callbackFromAuth0)
+            
         })
+
+        Route.post('/register')
+            .calls<Login>(Login, login => login.register)
     })
 }).pre(SessionAuthMiddleware)

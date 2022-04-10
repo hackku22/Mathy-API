@@ -1,4 +1,4 @@
-import {Controller, view, Inject, Injectable, SecurityContext, api} from '@extollo/lib'
+import {Controller, make, view, Inject, Injectable, SecurityContext, api, Safe, redirect, UserAuthenticationResumedEvent} from '@extollo/lib'
 import {User} from '../../../models/User.model'
 
 /**
@@ -26,7 +26,50 @@ export class Login extends Controller {
         return api.one(user)
     }
 
-    public async callbackFromAuth0() {
-        return api.error('Implement me!')
+    public async login() {
+        const email = this.request.safe('email').string()
+        const password = this.request.safe('password').string()
+
+        const user = await User.query<User>()
+            .where('username', '=', email).first()
+        if ( !user ) {
+            return api.error('Do I know you?')
+        }
+
+        const verify = await user.verifyPassword(password)
+
+        if ( !verify ) {
+            return api.error('Bruv, invalid password.')
+        }
+
+        await this.security.authenticate(user)
+
+        return redirect('/')
+
+    }
+
+    public async register() {
+        const name = this.request.safe('name').string()
+        const email = this.request.safe('email').string()
+        const password = this.request.safe('password').string()
+        // lookup user for conflict
+        const user = await User.query<User>()
+            .where('username', '=', email).first()
+        if ( user ) {
+            return api.error('You\'ve got a doppleganger')
+        }
+
+        // else, create new user and save to db
+        const newUser = make<User>(User)
+        newUser.firstName = name
+        newUser.lastName = ''
+        newUser.username = email
+        await newUser.setPassword(password)
+        await newUser.save()
+
+        // then login
+        await this.security.authenticate(newUser)
+
+        return redirect('/')
     }
 }
