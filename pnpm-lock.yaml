@@ -2,7 +2,7 @@ lockfileVersion: 5.3
 
 specifiers:
   '@extollo/cc': ^0.6.0
-  '@extollo/lib': ^0.9.32
+  '@extollo/lib': ^0.9.33
   copyfiles: ^2.4.1
   rimraf: ^3.0.2
   ts-expose-internals: ^4.5.4
@@ -12,7 +12,7 @@ specifiers:
   zod: ^3.11.6
 
 dependencies:
-  '@extollo/lib': 0.9.32
+  '@extollo/lib': 0.9.33
   copyfiles: 2.4.1
   rimraf: 3.0.2
   ts-expose-internals: 4.5.4
@@ -110,8 +110,8 @@ packages:
       - supports-color
     dev: true
 
-  /@extollo/lib/0.9.32:
-    resolution: {integrity: sha512-3DuRrLFmYY6w0rK5QKSlNWbGZnel6Lj2vjSGwwbj1IEJXGcZSA+TMXLghAwPkKyUsyX0WwdXVn6S51jmRHyWJw==}
+  /@extollo/lib/0.9.33:
+    resolution: {integrity: sha512-W7q1lSJXPDwKw6Xpihikh23zYyECUgcAydR/3FRAXwhpV+KV071UMmWCDRztP0cOzF2xJhkk6sa4fLSR3T65qA==}
     dependencies:
       '@atao60/fse-cli': 0.1.7
       '@extollo/ui': 0.1.0_@types+node@14.18.12
@@ -1148,7 +1148,7 @@ packages:
       source-map: 0.6.1
       wordwrap: 1.0.0
     optionalDependencies:
-      uglify-js: 3.15.3
+      uglify-js: 3.15.4
     dev: false
 
   /has-flag/4.0.0:
@@ -2531,8 +2531,8 @@ packages:
     engines: {node: '>=4.2.0'}
     hasBin: true
 
-  /uglify-js/3.15.3:
-    resolution: {integrity: sha512-6iCVm2omGJbsu3JWac+p6kUiOpg3wFO2f8lIXjfEb8RrmLjzog1wTPMmwKB7swfzzqxj9YM+sGUM++u1qN4qJg==}
+  /uglify-js/3.15.4:
+    resolution: {integrity: sha512-vMOPGDuvXecPs34V74qDKk4iJ/SN4vL3Ow/23ixafENYvtrNvtbcgUeugTcUGRGsOF/5fU8/NYSL5Hyb3l1OJA==}
     engines: {node: '>=0.8.0'}
     hasBin: true
     requiresBuild: true
