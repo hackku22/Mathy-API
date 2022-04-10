@@ -68,4 +68,25 @@ export class EditorPage extends Controller {
         await page.save()
         return api.one(page)
     }
+
+    public async delete() {
+        // Check if page_id is specified
+        const serialData = this.request.safe('serialData').string()
+        const pageId = String(this.request.input('pageId') ?? '')
+
+        // If so, look it up and update it
+        if ( pageId ) {
+            const page = await Page.query<Page>()
+                .whereKey(parseInt(pageId, 10))
+                .where('user_id', '=', this.security.user().getUniqueIdentifier())
+                .first()
+
+            if ( !page ) {
+                return api.error('Invalid pageId.')
+            }
+
+            page.serialData = serialData
+            await page.delete()
+        }
+    }
 }

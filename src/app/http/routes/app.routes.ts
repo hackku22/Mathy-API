@@ -22,6 +22,9 @@ Route.group('/', () => {
 
             Route.get('/pages')
                 .calls<EditorPage>(EditorPage, page => page.list)
+            
+            Route.delete('page')
+                .calls<EditorPage>(EditorPage, page => page.delete)
         }).pre(AuthRequiredMiddleware)
 
         Route.group('/login', () => {
