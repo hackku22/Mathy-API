@@ -44,8 +44,7 @@ export class Login extends Controller {
 
         await this.security.authenticate(user)
 
-        return redirect('/')
-
+        return api.one(user)
     }
 
     public async register() {
@@ -70,6 +69,10 @@ export class Login extends Controller {
         // then login
         await this.security.authenticate(newUser)
 
-        return redirect('/')
+        return api.one(newUser)
+    }
+
+    public async logout() {
+        await this.security.flush()
     }
 }
